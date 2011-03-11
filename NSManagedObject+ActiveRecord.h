@@ -29,6 +29,8 @@
 - (BOOL) deleteEntity;
 - (BOOL) deleteInContext:(NSManagedObjectContext *)context;
 
+- (BOOL)save;
+
 + (BOOL) truncateAll;
 + (BOOL) truncateAllInContext:(NSManagedObjectContext *)context;
 

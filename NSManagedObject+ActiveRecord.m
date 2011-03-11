@@ -13,6 +13,10 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
 @implementation NSManagedObject (ActiveRecord)
 
 
++ (NSString *)entityName {
+    return NSStringFromClass([self class]);
+}
+
 + (void) setDefaultBatchSize:(NSUInteger)newBatchSize
 {
 	@synchronized(self)
@@ -86,8 +90,7 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
     }
     else
     {
-        NSString *entityName = NSStringFromClass([self class]);
-        return [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+        return [NSEntityDescription entityForName:[self entityName] inManagedObjectContext:context];
     }
 }
 
@@ -604,8 +607,7 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
     }
     else
     {
-        NSString *entityName = NSStringFromClass([self class]);
-        return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+        return [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     }
 }
 
@@ -626,6 +628,10 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
 {
 	[self deleteInContext:[NSManagedObjectContext defaultContext]];
 	return YES;
+}
+
+- (BOOL)save {
+    return [[self managedObjectContext] save];
 }
 
 + (BOOL) truncateAllInContext:(NSManagedObjectContext *)context
