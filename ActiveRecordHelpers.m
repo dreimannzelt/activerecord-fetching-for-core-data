@@ -64,6 +64,11 @@
 	[NSManagedObjectContext setDefaultContext:context];
 }
 
++ (void) setupCoreDataContext:(NSManagedObjectContext *)context
+{
+	[NSManagedObjectContext setDefaultContext:context];
+}
+
 + (void) setupAutoMigratingCoreDataStack
 {
     [self setupCoreDataStackWithAutoMigratingSqliteStoreNamed:kActiveRecordDefaultStoreFileName];

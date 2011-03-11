@@ -25,6 +25,7 @@ typedef void (^CoreDataBlock)(NSManagedObjectContext *);
 - (void) handleErrors:(NSError *)error;
 
 + (void) setupCoreDataStack;
++ (void) setupCoreDataContext:(NSManagedObjectContext *)context;
 + (void) setupCoreDataStackWithInMemoryStore;
 + (void) setupAutoMigratingCoreDataStack;
 
